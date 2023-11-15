@@ -41,3 +41,28 @@ main_str = """
 """
 
 # TODO Распечатайте в столбик букву и её частоту в тексте
+def count_letters(text):
+    letters = {}
+    lowercase_text = text.lower()
+    for char in lowercase_text:
+        if char.isalpha() and char.islower():
+            if char in letters:
+                letters[char] += 1
+            else:
+                letters[char] = 1
+    return letters
+
+def calculate_frequency(letters):
+    total_count = sum(letters.values())
+    frequencies = {}
+    for letter, count in letters.items():
+        frequency = round(count / total_count, 2)
+        frequencies[letter] = frequency
+    return frequencies
+
+text = str(main_str)
+letters = count_letters(text)
+frequencies = calculate_frequency(letters)
+
+for letter, freq in frequencies.items():
+    print(f"{letter}: {freq:.2f}")
